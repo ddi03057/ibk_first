@@ -2,12 +2,12 @@ import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InputGroup, Table, Form, Dropdown, DropdownButton, Button, Modal, Accordion} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/JudgeStep1.css';
-import judgeData from '../json/judgeStep1Data.js';
-import cmmData from '../common/cmmData.js';
-import AlertModal from './AlertModal.js';
-import Header from './Header.js';
-import Footer from './Footer';
+import JudgeStep1 from '../../css/JudgeStep1.css';
+import judgeData from '../../json/judgeStep1Data.js';
+import cmmData from '../../json/cmmData.js';
+import AlertModal from '../0_common/AlertModal';
+import Header from '../0_common/Header';
+import Footer from '../0_common/Footer';
 
 
 function JudgeStep1Data() {

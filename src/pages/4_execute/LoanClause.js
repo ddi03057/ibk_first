@@ -1,12 +1,11 @@
-import LoanClauseCss from '../css/LoanClause.css';
+import LoanClauseCss from '../../css/LoanClause.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Header.js';
+import Header from '../0_common/Header';
 import { useCallback, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import data from '../json/LoanClauseData.js'
-import File from '../test/test.txt';
+import data from '../../json/LoanClauseData.js'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 

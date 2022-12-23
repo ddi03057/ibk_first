@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
-import cmmData from '../common/cmmData.js';
+import cmmData from '../../json/cmmData';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

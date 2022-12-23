@@ -1,13 +1,13 @@
-import CsInfoAgree2Css from '../css/CsInfoAgree2.css';
+import CsInfoAgree2Css from '../../css/CsInfoAgree2.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../json/cstinfoAddData';
+import data from '../../json/cstinfoAddData';
 import Button from 'react-bootstrap/Button';
-import Header from './Header.js';
+import Header from '../0_common/Header';
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import Footer from './Footer.js';
+import Footer from '../0_common/Footer';
 
 /* 수정 */
 

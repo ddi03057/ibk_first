@@ -1,12 +1,12 @@
-import Judge3Css from '../css/JudgeStep3.css';
+import Judge3Css from '../../css/JudgeStep3.css';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../json/judgeStep3Data.js';
+import data from '../../json/judgeStep3Data.js';
 import React, { useEffect, useRef, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Header from './Header.js';
+import Header from '../0_common/Header';
 
 
 function JudgeStep3() {

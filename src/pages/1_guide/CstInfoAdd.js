@@ -1,7 +1,7 @@
-import CsInfoAddCss from '../css/CstInfoAdd.css';
+import CsInfoAddCss from '../../css/CstInfoAdd.css'
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../json/cstinfoAddData';
+import data from '../../json/cstinfoAddData';
 import Button from 'react-bootstrap/Button';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 

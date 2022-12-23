@@ -1,4 +1,4 @@
-import PreGuideCss from '../css/PreGuide.css';
+import PreGuideCss from '../../css/PreGuide.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';

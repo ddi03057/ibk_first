@@ -1,7 +1,7 @@
-import ProCheckCss from '../css/ProCheck.css';
+import ProCheckCss from '../../css/ProCheck.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Header.js';
+import Header from '../0_common/Header';
 import { useEffect, useState } from 'react';
 
  

@@ -1,10 +1,10 @@
-import StartLoan1Css from '../css/StartLoan1.css';
+import StartLoan1Css from '../../css/StartLoan1.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Header.js';
+import Header from '../0_common/Header';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import data from '../json/StartLoanData.js';
+import data from '../../json/StartLoanData.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 

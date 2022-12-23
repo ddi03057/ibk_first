@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
-import Header from "./Header.js";
-import data from '../json/preJudgeInfoAddData.js';
+import Header from '../0_common/Header';
+import data from '../../json/preJudgeInfoAddData.js';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';

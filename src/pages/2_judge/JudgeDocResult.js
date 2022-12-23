@@ -1,12 +1,12 @@
-import JudgeDocResultCss from '../css/JudgeDocResult.css';
+import JudgeDocResultCss from '../../css/JudgeDocResult.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import Header from './Header.js';
+import Header from '../0_common/Header';
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import data from '../json/judgeDocResultData.js';
+import data from '../../json/judgeDocResultData.js';
 
 
 

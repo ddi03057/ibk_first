@@ -1,9 +1,9 @@
-import CsInfoAgreeCss from '../css/CsInfoAgree.css';
+import CsInfoAgreeCss from '../../css/CsInfoAgree.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../json/cstinfoAddData';
+import data from '../../json/cstinfoAddData';
 import Button from 'react-bootstrap/Button';
-import Header from './Header.js';
+import Header from '../0_common/Header';
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';

@@ -1,30 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
-import ProdGuide from './pages/ProdGuide.js'
-import CstInfoAdd from './pages/CstInfoAdd.js';
-import PreGuide from './pages/PreGuide.js';
-import JudgeStep1 from './pages/JudgeStep1.js';
-import JudgeStep2 from './pages/JudgeStep2.js';
-import JudgeStep3 from './pages/JudgeStep3.js';
-import CsInfoAgree from './pages/CsInfoAgree.js';
-import CsInfoAgree2 from './pages/CsInfoAgree2.js';
-import DocCollectList from './pages/DocCollectList.js';
-import JudgeResult from './pages/JudgeResult.js';
-import JudgeDocResult from './pages/JudgeDocResult.js';
-import ProCheck from './pages/ProCheck.js';
-import PreJudge from './pages/PreJudgeInfoAdd.js';
-import PreJudgeResult from './pages/PreJudgeResult.js';
-import LoanCheck1 from './pages/LoanCheck1.js';
-import LoanCheck2 from './pages/LoanCheck2.js';
-import LoanCheck3 from './pages/LoanCheck3.js';
-import LoanFail1 from './pages/LoanFail1.js';
-import LoanFail2 from './pages/LoanFail2.js';
-import LoanCancle from './pages/LoanCancle.js';
-import StartLoan1 from './pages/StartLoan1.js';
-import StartLoan2 from './pages/StartLoan2.js';
-import LoanContract from './pages/LoanContract.js';
-import LoanClause from './pages/LoanClause.js';
-import LoanEnd from './pages/LoanEnd.js';
+import ProdGuide from './pages/1_guide/ProdGuide.js'
+import CstInfoAdd from './pages/1_guide/CstInfoAdd.js';
+import PreGuide from './pages/1_guide/PreGuide.js';
+import JudgeStep1 from './pages/2_judge/JudgeStep1.js';
+import JudgeStep2 from './pages/2_judge/JudgeStep2.js';
+import JudgeStep3 from './pages/2_judge/JudgeStep3.js';
+import CsInfoAgree from './pages/2_judge/CsInfoAgree.js';
+import CsInfoAgree2 from './pages/2_judge/CsInfoAgree2';
+import DocCollectList from './pages/2_judge/DocCollectList';
+import JudgeResult from './pages/2_judge/JudgeResult.js';
+import JudgeDocResult from './pages/2_judge/JudgeDocResult.js';
+import ProCheck from './pages/2_judge/ProCheck.js';
+import PreJudgeInfoAdd from './pages/2_judge/PreJudgeInfoAdd.js';
+import PreJudgeResult from './pages/2_judge/PreJudgeResult.js';
+import LoanCheck1 from './pages/3_apply/LoanCheck1.js';
+import LoanCheck2 from './pages/3_apply/LoanCheck2.js';
+import LoanCheck3 from './pages/3_apply/LoanCheck3.js';
+import LoanFail1 from './pages/3_apply/LoanFail1.js';
+import LoanFail2 from './pages/3_apply/LoanFail2';
+import LoanCancle from './pages/3_apply/LoanCancle.js';
+import StartLoan1 from './pages/4_execute/StartLoan1.js';
+import StartLoan2 from './pages/4_execute/StartLoan2.js';
+import LoanContract from './pages/4_execute/LoanContract.js';
+import LoanClause from './pages/4_execute/LoanClause.js';
+import LoanEnd from './pages/4_execute/LoanEnd.js';
 
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
@@ -132,7 +132,7 @@ function App() {
         <Route path="/judgeresult" element={<JudgeResult />} />
         <Route path="/judgedocresult" element={<JudgeDocResult />} />
         <Route path="/procheck" element={<ProCheck />} />
-        <Route path="/PreJudgeInfoAdd" element={<PreJudge />} />
+        <Route path="/PreJudgeInfoAdd" element={<PreJudgeInfoAdd />} />
         <Route path="/prejudgeresult" element={<PreJudgeResult />} />
         <Route path="/loancheck1" element={<LoanCheck1 />} />
         <Route path="/loancheck2" element={<LoanCheck2 />} />

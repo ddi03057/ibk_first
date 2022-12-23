@@ -1,6 +1,6 @@
-import ProdGuideCss from '../css/ProdGuide.css';
+import ProdGuideCss from '../../css/ProdGuide.css';
 import Table from 'react-bootstrap/Table';
-import data from '../json/prodGuideData.js';
+import data from '../../json/prodGuideData.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';

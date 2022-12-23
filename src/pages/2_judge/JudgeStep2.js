@@ -1,7 +1,7 @@
-import '../css/JudgeStep2.css';
+import '../../css/JudgeStep2.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
-import data from '../json/judgeStep2Data.js';
+import data from '../../json/judgeStep2Data.js';
 
 
 import { ButtonGroup, ToggleButton, Table, Button } from 'react-bootstrap';
