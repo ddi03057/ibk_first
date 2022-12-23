@@ -1,0 +1,17 @@
+.JudgeResultTable{
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 5%;
+    
+}
+.title1{
+    font-size: 110%;
+    margin-left: -14%;
+    width: 120%;
+}
+.title2{
+    width: 100%;
+    font-size: 90%;
+    margin-left: -5%;
+    background-color: lightCyan;
+}

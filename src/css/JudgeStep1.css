@@ -1,0 +1,28 @@
+.TotalSection{
+    width: 100%;
+    margin-left: 1%;
+    margin-top: 2%;
+
+}
+.judgestep1{
+    margin-top: 5%;
+    
+}
+.titlestep1{
+    margin-top:5%;
+}
+
+.JudgeStep1Notice{
+    font-size: 20%;
+    width: 50%;
+}
+.Noticon{
+    width: 105%;
+}
+.JudgeAccordion{
+    margin-left: -5%;
+    width: 100%;
+}
+.headerAccordion{
+    width: 97%;
+}
