@@ -61,7 +61,7 @@ function Footer(props) {
           {
             obj.text.map((data, idx)=>{
               return (
-              <Button key={idx} variant={idx===0?"secondary":"primary"} size="lg" style={{width: '100%'}} onClick={()=>{setCallback(obj.callbackId, idx, navigate, link)}} disabled={obj.disabled}>
+              <Button key={idx} variant={obj.text.length>1&&idx===0?"secondary":"primary"} size="lg" style={{width: '100%'}} onClick={()=>{setCallback(obj.callbackId, idx, navigate, link)}} disabled={obj.disabled}>
                 {data}
               </Button>
               )  

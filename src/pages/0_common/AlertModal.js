@@ -18,15 +18,15 @@ import { Button, Modal } from 'react-bootstrap';
  * @returns 
  */
 
-function AlertModal({open, setPopup, message, title, isHeader, confirmBtn, callback}) {
-  
+function AlertModal({open, setPopup, message, title, isHeader, confirmBtn, callback, curRef}) {
+
   const handleClose = (props) => {
     
     setPopup({open: false, message: "", confirmBtn: [], callback: ()=>{}});
     
     if(typeof callback === "function"){
       
-      callback(props);
+      callback(props, curRef);
     }
   }
 
