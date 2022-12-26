@@ -14,7 +14,6 @@ function JudgeStep2() {
   let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99, 99]);
 
   const jsonItemList = judgeData;
-  const [radio, setRadio] = useState(["y", "n"]);
   const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], callback: function(){}});
   const itemRef = useRef([]);
   
@@ -112,7 +111,7 @@ function JudgeStep2() {
                     <div style={{textAlign: "center"}}>
                       <ButtonGroup key={idx1}>
                         {
-                          radio.map((data2, idx2) => {
+                          ["y", "n"].map((data2, idx2) => {
                             return (
                               <ToggleButton
                                 key={`${idx1}${idx2}`}
@@ -122,7 +121,6 @@ function JudgeStep2() {
                                 name={`${idx1}${idx2}`}
                                 value={data2}
                                 checked={answer[idx1] === data2}
-                                inline
                                 inputRef={(element)=>{itemRef.current[idx1] = element}}
                                 onChange={(e) => {
                                   let copy = [...answer];
@@ -152,7 +150,7 @@ function JudgeStep2() {
                 type="checkbox"
                 id={`check-checkbox`}
                 label="동의합니다."
-                inline
+                inline={true}
                 onChange={(e)=>{
                   setAgrmCheck(e.currentTarget.checked);
                 }}
