@@ -87,7 +87,7 @@ function JudgeStep2() {
     <>
       <Header pageId={4} />
       <Table className="TotalSection2">
-        <thead>
+        <tbody >
           <tr>
             <td >
               <h2>자가진단 체크리스트</h2>
@@ -99,8 +99,6 @@ function JudgeStep2() {
               보증심사 진행 가능여부를 사전에 확인해주시기 바랍니다.
             </td>
           </tr>
-        </thead>
-        <tbody >
           {
             jsonItemList.map((data1, idx1) => {
               return (

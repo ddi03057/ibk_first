@@ -43,7 +43,7 @@ function AlertModal({open, setPopup, message, title, isHeader, confirmBtn, callb
         <Modal.Body>
         {
           message.split('\n').map( line => {
-            return (<>{line}<br/></>)
+            return (<div key={line}>{line}<br/></div>)
           })
         }  
         </Modal.Body>
@@ -51,7 +51,7 @@ function AlertModal({open, setPopup, message, title, isHeader, confirmBtn, callb
         {
           confirmBtn.map((data, idx)=>{
             return (
-              <Button variant={idx===0?"secondary":"primary"} onClick={()=>{handleClose(idx)}}>{data}</Button>  
+              <Button key={`mdBtn${idx}`} variant={idx===0?"secondary":"primary"} onClick={()=>{handleClose(idx)}}>{data}</Button>  
             )
           })
         }
