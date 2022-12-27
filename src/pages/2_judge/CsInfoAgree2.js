@@ -22,7 +22,7 @@ function CsInfoAgree2() {
 
     return (
         <>
-            <Header pageId={4} stepCd={1} />
+            <Header pageId={4} stepCd={3} />
             <Table className='document3'>
                 <tr align='left'>
                     <td><b><span2>서류수집기관 : 국세청(홈텍스)</span2></b></td>

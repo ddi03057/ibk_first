@@ -20,7 +20,7 @@ function CsInfoAgree() {
 
     return (
         <>
-            <Header pageId={4} stepCd={1} />
+            <Header pageId={4} stepCd={3} />
             <Table className='document1'>
                 <tr align='left'>
                     <td><b><div className='agreetitle'>고객정보 조회 위임 동의 <h5 style={{color: 'blue', display: 'inline'}}>[필수]</h5></div></b></td>

@@ -79,7 +79,13 @@ return (
   <>
     <Header pageId={4} />
     <Table className="TotalSection">
+      <thead>
+        <tr><b>적정성˙적합성 고객정보 확인서(개인사업자용)</b></tr>
+        <tr style={{backgroundColor: '#CCCCFF'}}>본 확인서는 「금융소비자 보호에 관한 법률」에 의거하여 고객님의 연령, 대출목적(용도)등을 파악하여,고객님이 신청하신 상품이 고객님의 상황에 적합적정한지 여부를 확인하기 위한 기초 자료로 활용됩니다. 아래 체크리스트에 고객님의 상황에 부합하거나가장 가까운 항목을 정확히 선택하여 주시기바랍니다.</tr>
+      </thead>
+      <br/>
       <tbody>
+        <tr align='left'><b>체크리스트</b></tr>
         {
           jsonItemList.map(function (data, idx) {
             return (
