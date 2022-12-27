@@ -30,6 +30,7 @@ function JudgeStep1Data() {
 
   const jsonItemList = judgeData;
   const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], callback: function(){}});
+  const itemRef = useRef([]);
 
   function cbAlertModal(props) {
     if(props === 0) { //아니오
@@ -60,11 +61,11 @@ function JudgeStep1Data() {
         callback: cbCompleteModal
       });
     }else {
-      
+      itemRef.current[emptyMsg[0]].focus();
       setPopup({
         open: true,
         title: "Error",
-        message: emptyMsg,
+        message: emptyMsg[1],
         isHeader: false,
         confirmBtn: ["확인"],
         callback: cbAlertModal
@@ -92,7 +93,7 @@ return (
               <tr key={`tr${idx}`} style={{display: (isHide[idx])?"none":"block"}}>
                 <td key={`td${idx}`} align='left' colSpan={2}>
                   <b>{data.id + 1}. {data.title}</b> <br />
-                    <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx} setIsHide={setIsHide} popup={popup} setPopup={setPopup} setDisabledYn={setDisabledYn}/>
+                    <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx} setIsHide={setIsHide} popup={popup} setPopup={setPopup} setDisabledYn={setDisabledYn} itemRef={itemRef}/>
                   </td>
               </tr>
             )
@@ -250,6 +251,7 @@ function ItemForm(props) {
                 name="radio-group"
                 id={`radio${props.index}${idx}`}
                 label={data.value}
+                ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                 onClick={(e) => {
                   if("on" === e.target.value) {
                     clickRadioBtn(props, idx);
@@ -273,6 +275,7 @@ function ItemForm(props) {
                 aria-describedby="inputGroup-sizing-sm"
                 type='number'
                 max='99'
+                ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                 onChange={(e)=> {
                   let copy = [...props.answer];
                   copy[props.index] = e.target.value;
@@ -314,6 +317,7 @@ function ItemForm(props) {
                 }
                 </DropdownButton>
                 <Form.Control aria-label="Text input with radio button"
+                  ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                   onChange={(e)=>{
                     let copyObj = {...obj9};
                     copyObj.value = e.target.value;
@@ -341,6 +345,7 @@ function ItemForm(props) {
           <>
             <InputGroup>
               <Form.Control aria-label="Text input with radio button"
+                ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                 onChange={(e)=>{
                   let copy = [...email];
                   copy[0] = e.target.value;
@@ -427,7 +432,7 @@ function validCheckEmpty(answer) {
   let title = "";
   let index = 0;
   let verb = "하시기 바랍니다.";
-  let msg = "";
+  let msg = [];
   
   // answer.forEach((data, idx) => {
   for(let idx=0; idx<answer.length; idx++) {
@@ -446,25 +451,27 @@ function validCheckEmpty(answer) {
         } else {
             verb = "선택" + verb;
         }
-
-        msg = title + josa + verb;
+        msg[0] = idx;
+        msg[1] = title + josa + verb;
         return msg;
     }else if(idx === 9) {
       if(answer[idx].id === 0 && (!answer[idx].value || !answer[idx].crdBru)) {
-        
-        msg = "신용점수를 입력하시기 바랍니다.";
+        msg[0] = idx;
+        msg[1] = "신용점수를 입력하시기 바랍니다.";
         return msg;
       }
     }else if(idx === 11) {
       //이메일검증 정규식
       let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+      console.log(regex.test(answer[idx]));
       if(!regex.test(answer[idx])) {
-        msg = "이메일을 정확히 입력하시기 바랍니다."
+        msg[0] = idx;
+        msg[1] = "이메일을 정확히 입력하시기 바랍니다."
         return msg;
       }
     }
   }
-  return msg;
+  return "";
 }
 
 /**
