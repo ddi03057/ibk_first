@@ -30,6 +30,7 @@ function JudgeStep1Data() {
 
   const jsonItemList = judgeData;
   const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], callback: function(){}});
+  const itemRef = useRef([]);
 
   function cbAlertModal(props) {
     if(props === 0) { //아니오
@@ -40,8 +41,14 @@ function JudgeStep1Data() {
   }
   function cbCompleteModal(props) {
     //tobe : axios 진단리스트
-
-    navigate("/judgestep2");
+    //axios콜백에서 적합/부적합결과 받아서 적합성적정성결과화면 이동
+    navigate(
+      "/judgeresult"
+      , {state: {
+          result: true
+         ,value: answer
+        }
+      });
   }
   function cbFooter(idx, navigate, link) {
     
@@ -60,11 +67,11 @@ function JudgeStep1Data() {
         callback: cbCompleteModal
       });
     }else {
-      
+      itemRef.current[emptyMsg[0]].focus();
       setPopup({
         open: true,
         title: "Error",
-        message: emptyMsg,
+        message: emptyMsg[1],
         isHeader: false,
         confirmBtn: ["확인"],
         callback: cbAlertModal
@@ -79,14 +86,20 @@ return (
   <>
     <Header pageId={4} />
     <Table className="TotalSection">
+      <thead>
+        <tr><b>적정성˙적합성 고객정보 확인서(개인사업자용)</b></tr>
+        <tr style={{backgroundColor: '#CCCCFF'}}>본 확인서는 「금융소비자 보호에 관한 법률」에 의거하여 고객님의 연령, 대출목적(용도)등을 파악하여,고객님이 신청하신 상품이 고객님의 상황에 적합적정한지 여부를 확인하기 위한 기초 자료로 활용됩니다. 아래 체크리스트에 고객님의 상황에 부합하거나가장 가까운 항목을 정확히 선택하여 주시기바랍니다.</tr>
+      </thead>
+      <br/>
       <tbody>
+        <tr align='left'><b>체크리스트</b></tr>
         {
           jsonItemList.map(function (data, idx) {
             return (
               <tr key={`tr${idx}`} style={{display: (isHide[idx])?"none":"block"}}>
                 <td key={`td${idx}`} align='left' colSpan={2}>
                   <b>{data.id + 1}. {data.title}</b> <br />
-                    <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx} setIsHide={setIsHide} popup={popup} setPopup={setPopup} setDisabledYn={setDisabledYn}/>
+                    <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx} setIsHide={setIsHide} popup={popup} setPopup={setPopup} setDisabledYn={setDisabledYn} itemRef={itemRef}/>
                   </td>
               </tr>
             )
@@ -244,6 +257,7 @@ function ItemForm(props) {
                 name="radio-group"
                 id={`radio${props.index}${idx}`}
                 label={data.value}
+                ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                 onClick={(e) => {
                   if("on" === e.target.value) {
                     clickRadioBtn(props, idx);
@@ -267,6 +281,7 @@ function ItemForm(props) {
                 aria-describedby="inputGroup-sizing-sm"
                 type='number'
                 max='99'
+                ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                 onChange={(e)=> {
                   let copy = [...props.answer];
                   copy[props.index] = e.target.value;
@@ -308,6 +323,7 @@ function ItemForm(props) {
                 }
                 </DropdownButton>
                 <Form.Control aria-label="Text input with radio button"
+                  ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                   onChange={(e)=>{
                     let copyObj = {...obj9};
                     copyObj.value = e.target.value;
@@ -335,6 +351,7 @@ function ItemForm(props) {
           <>
             <InputGroup>
               <Form.Control aria-label="Text input with radio button"
+                ref={(element)=>{props.itemRef.current[props.data.id] = element}}
                 onChange={(e)=>{
                   let copy = [...email];
                   copy[0] = e.target.value;
@@ -421,7 +438,7 @@ function validCheckEmpty(answer) {
   let title = "";
   let index = 0;
   let verb = "하시기 바랍니다.";
-  let msg = "";
+  let msg = [];
   
   // answer.forEach((data, idx) => {
   for(let idx=0; idx<answer.length; idx++) {
@@ -440,25 +457,27 @@ function validCheckEmpty(answer) {
         } else {
             verb = "선택" + verb;
         }
-
-        msg = title + josa + verb;
+        msg[0] = idx;
+        msg[1] = title + josa + verb;
         return msg;
     }else if(idx === 9) {
       if(answer[idx].id === 0 && (!answer[idx].value || !answer[idx].crdBru)) {
-        
-        msg = "신용점수를 입력하시기 바랍니다.";
+        msg[0] = idx;
+        msg[1] = "신용점수를 입력하시기 바랍니다.";
         return msg;
       }
     }else if(idx === 11) {
       //이메일검증 정규식
       let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+      console.log(regex.test(answer[idx]));
       if(!regex.test(answer[idx])) {
-        msg = "이메일을 정확히 입력하시기 바랍니다."
+        msg[0] = idx;
+        msg[1] = "이메일을 정확히 입력하시기 바랍니다."
         return msg;
       }
     }
   }
-  return msg;
+  return "";
 }
 
 /**

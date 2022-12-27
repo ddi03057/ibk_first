@@ -210,7 +210,7 @@ let data = [
     },
     {
         id : 11,
-        title : "서류 교부용 이멜일 주소 입력",
+        title : "이메일 주소",
         standardVal : "",
         type : "text",
         
