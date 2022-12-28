@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import { InputGroup, Container, Form, Dropdown, DropdownButton, Button, Modal, Accordion, Row, Col } from 'react-bootstrap';
+import { Container,Row,Col,InputGroup,Form} from 'react-bootstrap';
+import { Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../../json/cstinfoAddData';
 import Footer from '../0_common/Footer';
@@ -76,17 +76,23 @@ function CstInfoAdd() {
       <div style={{ textAlign: "center", marginTop: 20 }}>
         <h4><b>고객 정보 등록</b></h4>
       </div>
+      <br/>
       <Container>
           {
             jsonDetail.map(function (data, idx) {
               return (
-                <Row key={idx}>
-                  <Col><b>{data.name}</b></Col>
-                  <Col><ItemForm data={data} index={idx} answer={answer} setAnswer={setAnswer} /></Col>
+                <Row
+                  key={idx} style={{textAlign:"left" }}>
+                  <Col xs={4}><b>{data.name}</b></Col>
+                  <Col xs={8}>
+                    <ItemForm data={data} index={idx} answer={answer} setAnswer={setAnswer} />
+                    </Col>
+                  <hr/>
                 </Row>
               )
             })
           }
+          <br/>
       </Container>
       <Footer obj={{
         type: "button",
@@ -104,12 +110,11 @@ function ItemForm(props) {
 
   if (props.data.type == "input") {
     return (
-      <>
       <Container>
         <Row>
           <Col>{data.name}</Col>
           <Col>
-            <InputGroup size="sm" className="mb-3">
+            <InputGroup style={{width:200}} className="mb-3">
 
               <Form.Control
                 aria-label="Small"
@@ -127,17 +132,14 @@ function ItemForm(props) {
           </Col>
         </Row>
         </Container>
-      </>
     )
   } else if (props.data.type == "text") {
     return (
-      <>
       <Container>
         <Row>
           <Col>{props.data.content}</Col>
         </Row>
         </Container>
-      </>
     )
   }
 }
