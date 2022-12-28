@@ -10,91 +10,73 @@ function ProdGuide() {
             <div style={{ textAlign: "center", marginTop: 20 }}><h2>상품 안내</h2></div>
             <Table>
                 <tbody>
-                    <tr>
-                        <b>
-                            <th>구분</th>
-                        </b>
-                        <th>상세내용</th>
+                    <tr style={{ fontWeight: "bold" }}>
+                        <td style={{ width: '20%' }}>구분</td>
+                        <td>상세내용</td>
                     </tr>
                     <tr>
-                        <b>
-                            <td>
-                                상품명
-                            </td>
-                        </b>
+                        <td style={{ fontWeight: "bold" }}>
+                            상품명
+                        </td>
                         <td>
                             온라인 플랫폼 입점 소상공인 보증부대출(가칭)
                         </td>
                     </tr>
                     <tr>
-                        <b>
-                            <td>
-                                가입대상
-                            </td>
-                        </b>
+                        <td style={{ fontWeight: "bold" }}>
+                            가입대상
+                        </td>
                         <td>
                             ■ 네이버 스토어 입점 개인사업자(개업일일로부터 6개월 이상)<br />
                             ※ 단독 개인사업자
                         </td>
                     </tr>
                     <tr>
-                        <b>
-                            <td>
-                                대출한도
-                            </td>
-                        </b>
+                        <td style={{ fontWeight: "bold" }}>
+                            대출한도
+                        </td>
                         <td>
                             ■ 최대 1억원(90% 신용보증기금 보증서)<br />
                             ※ 대출한도는 보증심사결과에 따라 결정됩니다.
                         </td>
                     </tr>
-                    <tr><b>
-                        <td>
+                    <tr>
+                        <td style={{ fontWeight: "bold" }}>
                             대출용도
                         </td>
-                    </b>
+
                         <td>
                             사업장 운영자금
                         </td>
                     </tr>
                     <tr>
-                        <b>
-                            <td>
-                                대출한도
-                            </td>
-                        </b>
+                        <td style={{ fontWeight: "bold" }}>
+                            대출한도
+                        </td>
                         <td>
                             1억원
                         </td>
                     </tr>
-                    <tr>
-                        <b>
-                            <td>
-                                대출금리
-                            </td>
-                        </b>
+                    <tr style={{ fontWeight: "bold" }}>
                         <td>
-                            <b>
-                                ■ KORJBOR(3,6,12개월물中선택) + 가산금리 - 우대금리<br />
-                                ■ 연체이자 및 지연배상금(은행여신약관 기준)
-                            </b>
+                            대출금리
+                        </td>
+                        <td>
+                            ■ KORJBOR(3,6,12개월물中선택) + 가산금리 - 우대금리<br />
+                            ■ 연체이자 및 지연배상금(은행여신약관 기준)
                         </td>
                     </tr>
-                    <tr>
-                        <b>
+                    <tr style={{ fontWeight: "bold" }}>
                             <td>
                                 부대비용
                             </td>
-                        </b>
                         <td>
                             ■ 중도상환해약금 면제 / - 수입인지세 5천만원 초과<br />
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <b>
+                        <td style={{ fontWeight: "bold" }}>
                                 유의사항 및 기타
-                            </b>
                         </td>
                         <td>
                             (금융지원 제외 대상)<br />

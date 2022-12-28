@@ -26,9 +26,9 @@ function CstInfoAdd() {
   const [popup, setPopup] = useState({ open: false, title: "", message: "", isHeader: false, confirmBtn: [], callback: function () { } });
 
   function cbAlertModal(props) {
-    if (props === 0) { 
+    if (props === 0) {
 
-    } else { 
+    } else {
 
     }
   }
@@ -73,15 +73,15 @@ function CstInfoAdd() {
   jsonDetail = data;
   return (
     <>
-    <div style={{textAlign:"center", marginTop:20}}>
+      <div style={{ textAlign: "center", marginTop: 20 }}>
         <h4><b>고객 정보 등록</b></h4>
-        </div>
+      </div>
       <Table>
         <tbody>
           {
             jsonDetail.map(function (data, idx) {
               return (
-                <tr>
+                <tr key={idx}>
                   <td><b>{data.name}</b></td>
                   <td><ItemForm data={data} index={idx} answer={answer} setAnswer={setAnswer} /></td>
                 </tr>
@@ -89,7 +89,6 @@ function CstInfoAdd() {
             })
           }
         </tbody>
-
       </Table>
       <Footer obj={{
         type: "button",
@@ -98,7 +97,7 @@ function CstInfoAdd() {
         link: "",
         callbackId: cbFooter
       }} ></Footer>
-    <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} confirmBtn={popup.confirmBtn} callback={popup.callback}/>
+      <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} confirmBtn={popup.confirmBtn} callback={popup.callback} />
 
     </>
   );
@@ -108,6 +107,8 @@ function ItemForm(props) {
   if (props.data.type == "input") {
     return (
       <>
+      <Table>
+      <tbody>
         <tr>
           <td>{data.name}</td>
           <td>
@@ -128,14 +129,20 @@ function ItemForm(props) {
             </InputGroup>
           </td>
         </tr>
+        </tbody>
+        </Table>
       </>
     )
   } else if (props.data.type == "text") {
     return (
       <>
+      <Table>
+      <tbody>
         <tr>
           <td>{props.data.content}</td>
         </tr>
+        </tbody>
+        </Table>
       </>
     )
   }
