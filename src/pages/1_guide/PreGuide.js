@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button,Table } from 'react-bootstrap';
+import { Button,Container,Row,Col } from 'react-bootstrap';
 
 
 function PreGuide() {
@@ -26,47 +26,47 @@ function PreGuide() {
         <>
                
         <div style={{textAlign:"center", marginTop:20}}> <h4>대출신청 전 사전안내</h4></div>
-        <Table >
-            <tbody>
-                <tr>
-                    <th>목적(단계)</th>
-                    <th>준비 사항</th>
-                </tr>
-                <tr>
-                    <th>[ 본인확인 ]</th>
-                    <th>본인 명의 휴대전화</th>
-                </tr>
-                <tr>
+        <Container>
+            
+                <Row>
+                    <Col>목적(단계)</Col>
+                    <Col>준비 사항</Col>
+                </Row>
+                <Row>
+                    <Col>[ 본인확인 ]</Col>
+                    <Col>본인 명의 휴대전화</Col>
+                </Row>
+                <Row>
 
-                    <th> [ 스크래핑(정보수집) ] </th>
-                    <td><p><b>국세청/정부24에 등록된 개인공동인증서</b></p>
+                    <Col> [ 스크래핑(정보수집) ] </Col>
+                    <Col><p><b>국세청/정부24에 등록된 개인공동인증서</b></p>
                         <p>- 개인공동인증서 스마트폰 복사 가이드</p>
                         <Button>안내화면</Button>
                         <p>- 국세청/정부24 미가입(미등록) 고객을 위한 해당 사이트</p>
                         <Button onClick={() => { window.location.href = 'https://www.nts.go.kr'; }}>국세청</Button>
                         <Button onClick={() => { window.location.href = 'https://www.gov.kr'; }}>정부24</Button>
                         <p>-개인공동인증서 등록 완료 후 스마트폰 내 개인공동인증서</p>
-                        <Button>개인공동인증서 조회(관리)</Button></td>
-                </tr>
-                <tr>
-                    <th>[ 대출 실행 ]</th>
-                    <td><p><b>OTP</b></p>
+                        <Button>개인공동인증서 조회(관리)</Button></Col>
+                </Row>
+                <Row>
+                    <Col>[ 대출 실행 ]</Col>
+                    <Col><p><b>OTP</b></p>
                         <p>-보유 OTP 활성화 상태 및 동작 확인</p>
-                        <Button>OTP 테스트</Button></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id='preinfocheck' onChange={e => {
+                        <Button>OTP 테스트</Button></Col>
+                </Row>
+                <Row>
+                    <Col><input type="checkbox" id='preinfocheck' onChange={e => {
                         changeHandler(e.currentTarget.checked, 'check');
                     }}
-                        checked={checkedButtons.includes('check') ? true : false}></input></td>
-                    <td>위 내용을 확인하였습니다.</td>
-                </tr>
+                        checked={checkedButtons.includes('check') ? true : false}></input></Col>
+                    <Col>위 내용을 확인하였습니다.</Col>
+                </Row>
 
-            </tbody>
+            
             
 
 
-        </Table>
+        </Container>
         <Link onClick={() => {
 
         }} to="/judgestep1"><Button

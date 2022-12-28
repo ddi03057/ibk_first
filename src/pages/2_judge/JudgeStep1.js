@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { InputGroup, Table, Form, Dropdown, DropdownButton, Button, Modal, Accordion} from 'react-bootstrap';
+import { InputGroup, Container, Form, Dropdown, DropdownButton, Button, Modal, Accordion, Row,Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import JudgeStep1 from '../../css/JudgeStep1.css';
 import judgeData from '../../json/judgeStep1Data.js';
@@ -85,23 +85,19 @@ function JudgeStep1Data() {
 return (
   <>
     <Header pageId={4} />
-    <Table className="TotalSection">
-      <thead>
-        <tr><b>적정성˙적합성 고객정보 확인서(개인사업자용)</b></tr>
-        <tr style={{backgroundColor: '#CCCCFF'}}>본 확인서는 「금융소비자 보호에 관한 법률」에 의거하여 고객님의 연령, 대출목적(용도)등을 파악하여,고객님이 신청하신 상품이 고객님의 상황에 적합적정한지 여부를 확인하기 위한 기초 자료로 활용됩니다. 아래 체크리스트에 고객님의 상황에 부합하거나가장 가까운 항목을 정확히 선택하여 주시기바랍니다.</tr>
-      </thead>
-      <br/>
-      <tbody>
-        <tr align='left'><b>체크리스트</b></tr>
+    <Container className="TotalSection">
+        <Row>적정성˙적합성 고객정보 확인서(개인사업자용)</Row>
+        <Row style={{backgroundColor: '#CCCCFF'}}>본 확인서는 「금융소비자 보호에 관한 법률」에 의거하여 고객님의 연령, 대출목적(용도)등을 파악하여,고객님이 신청하신 상품이 고객님의 상황에 적합적정한지 여부를 확인하기 위한 기초 자료로 활용됩니다. 아래 체크리스트에 고객님의 상황에 부합하거나가장 가까운 항목을 정확히 선택하여 주시기바랍니다.</Row>
+        <Row style={{ fontWeight: "bold",textAlign:"left"}}>체크리스트</Row>
         {
           jsonItemList.map(function (data, idx) {
             return (
-              <tr key={`tr${idx}`} style={{display: (isHide[idx])?"none":"block"}}>
-                <td key={`td${idx}`} align='left' colSpan={2}>
-                  <b>{data.id + 1}. {data.title}</b> <br />
+              <Row key={`tr${idx}`} style={{display: (isHide[idx])?"none":"block"}}>
+                <Col key={`td${idx}`} align='left' >
+                  {data.id + 1}. {data.title} 
                     <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx} setIsHide={setIsHide} popup={popup} setPopup={setPopup} setDisabledYn={setDisabledYn} itemRef={itemRef}/>
-                  </td>
-              </tr>
+                  </Col>
+              </Row>
             )
           })
         }
@@ -110,26 +106,24 @@ return (
             <Accordion.Header ><b>유의사항</b></Accordion.Header>
             <Accordion.Body className='Noticon'>
         <div className='JudgeAccordion'>
-              <tr>
-                <td>
+              <Row>
+                <Col>
                   ㆍ보유자산, 부채 항목은 작성일 기준 / 현재소득은 최근 1년기준으로 작성<br />
                   ㆍ본 확인서는 『금융소비자 보호에 관한 법률』 제17조 및 제18조에 따라 작성되었습니다.
-                </td>
-              </tr>
+                </Col>
+              </Row>
               </div>
-              <tr>
-                <td>
+              <Row>
+                <Col>
                   <Button style={{width:300, marginLeft:10}} variant="primary" onClick={() => { handleShow() }}>내용보기</Button>
-                </td>
-              </tr>
-              <tr>
-              </tr>
+                </Col>
+              </Row>
+              
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
 
-      </tbody>
-    </Table>
+    </Container>
     <Footer obj={{
       type: "button",  
       disabled: disabledYn,
@@ -245,7 +239,7 @@ function ItemForm(props) {
   }
   if (props.data.type == "select") {
     return (
-      <Form>
+      <Form >
 
         <div key="default-radio" className="mb-3">
         {
@@ -312,7 +306,8 @@ function ItemForm(props) {
                 {
                   cmmData("crdBru").map(function (data, idx) {
                     return (
-                      <Dropdown.Item  onClick={(e) => {
+                      <Dropdown.Item key={idx}
+                      onClick={(e) => {
                         setSelCrdBru(data.title);
                         let copyObj = {...obj9};
                         copyObj.crdBru = data.title;
@@ -374,7 +369,8 @@ function ItemForm(props) {
               {
                 cmmData("email").map(function (data, idx) {
                   return (
-                    <Dropdown.Item onClick={(e) => {
+                    <Dropdown.Item key={data.id}
+                     onClick={(e) => {
                         
                         if(data.id === 1) {
                           setStlEmailTxt("block");

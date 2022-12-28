@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import { InputGroup, Table, Form, Dropdown, DropdownButton, Button, Modal, Accordion } from 'react-bootstrap';
+import { InputGroup, Container, Form, Dropdown, DropdownButton, Button, Modal, Accordion, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../../json/cstinfoAddData';
 import Footer from '../0_common/Footer';
@@ -76,20 +76,18 @@ function CstInfoAdd() {
       <div style={{ textAlign: "center", marginTop: 20 }}>
         <h4><b>고객 정보 등록</b></h4>
       </div>
-      <Table>
-        <tbody>
+      <Container>
           {
             jsonDetail.map(function (data, idx) {
               return (
-                <tr key={idx}>
-                  <td><b>{data.name}</b></td>
-                  <td><ItemForm data={data} index={idx} answer={answer} setAnswer={setAnswer} /></td>
-                </tr>
+                <Row key={idx}>
+                  <Col><b>{data.name}</b></Col>
+                  <Col><ItemForm data={data} index={idx} answer={answer} setAnswer={setAnswer} /></Col>
+                </Row>
               )
             })
           }
-        </tbody>
-      </Table>
+      </Container>
       <Footer obj={{
         type: "button",
         disabled: disabledYn,
@@ -107,11 +105,10 @@ function ItemForm(props) {
   if (props.data.type == "input") {
     return (
       <>
-      <Table>
-      <tbody>
-        <tr>
-          <td>{data.name}</td>
-          <td>
+      <Container>
+        <Row>
+          <Col>{data.name}</Col>
+          <Col>
             <InputGroup size="sm" className="mb-3">
 
               <Form.Control
@@ -127,22 +124,19 @@ function ItemForm(props) {
                 }}
               />
             </InputGroup>
-          </td>
-        </tr>
-        </tbody>
-        </Table>
+          </Col>
+        </Row>
+        </Container>
       </>
     )
   } else if (props.data.type == "text") {
     return (
       <>
-      <Table>
-      <tbody>
-        <tr>
-          <td>{props.data.content}</td>
-        </tr>
-        </tbody>
-        </Table>
+      <Container>
+        <Row>
+          <Col>{props.data.content}</Col>
+        </Row>
+        </Container>
       </>
     )
   }
