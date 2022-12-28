@@ -11,7 +11,7 @@ import { ButtonGroup, ToggleButton, Table, Button, Form } from 'react-bootstrap'
 
 function JudgeStep2() {
 
-  let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99, 99]);
+  let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99]);
 
   const jsonItemList = judgeData;
   const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], callback: function(){}});
@@ -52,7 +52,7 @@ function JudgeStep2() {
     if(!validMsg) {
       //tobe : axios 진단리스트
 
-      navigate("/judgestep2");
+      navigate("/judgestep3");
     }else {
       
       itemRef.current[validMsg[0]].focus();
