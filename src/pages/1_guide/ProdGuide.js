@@ -1,18 +1,14 @@
-import ProdGuideCss from '../../css/ProdGuide.css';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function ProdGuide() {
 
     return (
         <>
-            <Table className='ProdGuidetable'>
-                <thead>
-                    <h2 className='ProdGuideh2'>상품 안내</h2>
-
-                </thead>
+            <div style={{ textAlign: "center", marginTop: 20 }}><h2>상품 안내</h2></div>
+            <Table>
                 <tbody>
                     <tr>
                         <b>
@@ -95,9 +91,10 @@ function ProdGuide() {
                         </td>
                     </tr>
                     <tr>
-                        <td><b>
-                            유의사항 및 기타
-                        </b>
+                        <td>
+                            <b>
+                                유의사항 및 기타
+                            </b>
                         </td>
                         <td>
                             (금융지원 제외 대상)<br />
@@ -114,18 +111,11 @@ function ProdGuide() {
                             (준법감시심의필) / (금리인하요구권) / (청약철회) 등<br />
                             (기타사항)<br />
                             ※ 본 보증상품은 주민등록번호당 최대 1억원 이내 지원이 가능합니다. 고객님의 신용도와 당행 및 신용보증기금의 심사기준에 따라 대출여부가 결정됩니다. 금융기관 신용정보관리대상 고객 및 당행 대출 부적격자는 대출이 제한될 수 있습니다. 자세한 내용은 IBK고객센터 ☎(1588-2588) 또는 기업은행 가까운 영업점으로 문의하여 주시기 바랍니다. 상품금액 및 종류에 따라 부대비용이 발생할 수 있습니다. (중략) 본 공시는 상품에 대한 이해를 돕고 약관의 중요내용을 알려드리기 위한 참고자료이며, 실제상품의 계약은 여신거래약정서(생략)
-
                         </td>
                     </tr>
-
-
-
-
                 </tbody>
-
             </Table>
             <Link onClick={() => {
-
             }} to="/preguide"><Button
                 variant='primary'
                 className='ProGuidebutton'

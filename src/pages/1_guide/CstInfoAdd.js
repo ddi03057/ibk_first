@@ -1,11 +1,10 @@
-import CsInfoAddCss from '../../css/CstInfoAdd.css'
+import { useEffect, useState, useRef } from 'react';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import { InputGroup, Table, Form, Dropdown, DropdownButton, Button, Modal, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../../json/cstinfoAddData';
 import Footer from '../0_common/Footer';
 import AlertModal from '../0_common/AlertModal';
-import { InputGroup, Table, Form, Dropdown, DropdownButton, Button, Modal, Accordion } from 'react-bootstrap';
-import { useEffect, useState, useRef } from 'react';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function CstInfoAdd() {
 
@@ -74,10 +73,10 @@ function CstInfoAdd() {
   jsonDetail = data;
   return (
     <>
-      <Table className='cstinfomain'>
-
-        <h4 className='csinfotitle'><b>고객 정보 등록</b></h4>
-
+    <div style={{textAlign:"center", marginTop:20}}>
+        <h4><b>고객 정보 등록</b></h4>
+        </div>
+      <Table>
         <tbody>
           {
             jsonDetail.map(function (data, idx) {

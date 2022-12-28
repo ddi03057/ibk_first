@@ -1,9 +1,7 @@
-import PreGuideCss from '../../css/PreGuide.css';
-import Table from 'react-bootstrap/Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button,Table } from 'react-bootstrap';
 
 
 function PreGuide() {
@@ -24,15 +22,11 @@ function PreGuide() {
     };
     const isAllChecked = checkedButtons.length === 1;
 
-
-
     return (
         <>
-        <Table className='preguidemain'>
-            <thead>
-                <h4 className='PreGuideh4'>대출신청 전 사전안내</h4>
-
-            </thead>
+               
+        <div style={{textAlign:"center", marginTop:20}}> <h4>대출신청 전 사전안내</h4></div>
+        <Table >
             <tbody>
                 <tr>
                     <th>목적(단계)</th>
@@ -79,7 +73,8 @@ function PreGuide() {
             variant='primary'
             className='PreGuidebutton'
             disabled={disabled}
-            size="lg" style={{width: '100%'}}>
+            size="lg"
+            style={{ width: '100%' }}>
                 확인
             </Button></Link>
             </>
