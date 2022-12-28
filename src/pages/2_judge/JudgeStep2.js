@@ -105,7 +105,7 @@ function JudgeStep2() {
                 <tr key={idx1}>
                   <td key={idx1} align="left">
                     {idx1 + 1}. {data1.title}
-                    <br />
+                    
                     <div style={{textAlign: "center"}}>
                       <ButtonGroup key={idx1}>
                         {
@@ -138,7 +138,7 @@ function JudgeStep2() {
               )
             })
           }
-          <br />
+          
           <tr>
             <td style={{ backgroundColor: "lightgray" }}>고객님께서 입력하신 내용은 심사 시 사실여부를 다시 한번 확인하게 됩니다. 신청대상이 아님에도 불구하고 실제와 다르게 입력하였을 경우 보증서 발급이 거절될 수 있습니다.</td>
           </tr>
