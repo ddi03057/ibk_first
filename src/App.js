@@ -117,8 +117,7 @@ function App() {
 
 
       <Link onClick={() => {
-        let i = '<div class="pcLoginWrap on" id="pcLoginWrap">\n                          <div class="bg"></div>\n                          <div class="pclayerPopCont">\n                            <iframe src="' + 'https://www.ibkbox.net' + '/COM001/login.do" width="100%" height="100%" scrolling="auto" frameBorder="0" id="ifrmPage">이 브라우저는 iframe을\n                              지원하지 않습니다.\n                            </iframe>\n                          </div>\n                        </div>';
-        document.querySelector("body").prepend(i);
+        
         //window.location.href = 'https://www.ibkbox.net/COM001/login.do';
       }} to="/">test</Link>
       <Routes>
