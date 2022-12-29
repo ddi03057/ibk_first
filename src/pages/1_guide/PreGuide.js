@@ -28,17 +28,20 @@ function PreGuide() {
         <div style={{textAlign:"center", marginTop:20}}> <h4>대출신청 전 사전안내</h4></div>
         <Container>
             
-                <Row>
-                    <Col>목적(단계)</Col>
+                <Row style={{ fontWeight: "bold"}}>
+                    <Col >목적(단계)</Col>
                     <Col>준비 사항</Col>
                 </Row>
+                <hr/>
                 <Row>
                     <Col>[ 본인확인 ]</Col>
                     <Col>본인 명의 휴대전화</Col>
                 </Row>
+                <hr/>
+
                 <Row>
 
-                    <Col> [ 스크래핑(정보수집) ] </Col>
+                    <Col> [스크래핑(정보수집)] </Col>
                     <Col><p><b>국세청/정부24에 등록된 개인공동인증서</b></p>
                         <p>- 개인공동인증서 스마트폰 복사 가이드</p>
                         <Button>안내화면</Button>
@@ -48,12 +51,16 @@ function PreGuide() {
                         <p>-개인공동인증서 등록 완료 후 스마트폰 내 개인공동인증서</p>
                         <Button>개인공동인증서 조회(관리)</Button></Col>
                 </Row>
+                <hr/>
+
                 <Row>
                     <Col>[ 대출 실행 ]</Col>
                     <Col><p><b>OTP</b></p>
                         <p>-보유 OTP 활성화 상태 및 동작 확인</p>
                         <Button>OTP 테스트</Button></Col>
                 </Row>
+                <hr/>
+
                 <Row>
                     <Col><input type="checkbox" id='preinfocheck' onChange={e => {
                         changeHandler(e.currentTarget.checked, 'check');

@@ -8,10 +8,10 @@ function ProdGuide() {
     return (
         <>
             <div style={{ textAlign: "center", marginTop: 20 }}><h2>상품 안내</h2></div>
-            <Container>
+            <Container style={{ textAlign:'left' }}>
         
                     <Row style={{ fontWeight: "bold" }}>
-                        <Col style={{ width: '20%' }}>구분</Col>
+                        <Col >구분</Col>
                         <Col>상세내용</Col>
                     </Row>
                     <Row>
@@ -32,7 +32,7 @@ function ProdGuide() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col style={{ fontWeight: "bold" }}>
+                        <Col style={{ fontWeight: "bold", }}>
                             대출한도
                         </Col>
                         <Col>
@@ -41,7 +41,7 @@ function ProdGuide() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col style={{ fontWeight: "bold" }}>
+                        <Col style={{ fontWeight: "bold",}}>
                             대출용도
                         </Col>
 
@@ -50,7 +50,7 @@ function ProdGuide() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col style={{ fontWeight: "bold" }}>
+                        <Col style={{ fontWeight: "bold", }}>
                             대출한도
                         </Col>
                         <Col>
@@ -66,7 +66,7 @@ function ProdGuide() {
                             ■ 연체이자 및 지연배상금(은행여신약관 기준)
                         </Col>
                     </Row>
-                    <Row style={{ fontWeight: "bold" }}>
+                    <Row style={{ fontWeight: "bold"}}>
                             <Col>
                                 부대비용
                             </Col>

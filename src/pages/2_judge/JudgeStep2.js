@@ -1,13 +1,12 @@
-import '../../css/JudgeStep2.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ButtonGroup, ToggleButton, Table, Button, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import judgeData from '../../json/judgeStep2Data.js';
 import Header from '../0_common/Header';
 import Footer from '../0_common/Footer';
 import AlertModal from '../0_common/AlertModal';
 
-import { ButtonGroup, ToggleButton, Table, Button, Form } from 'react-bootstrap';
 
 function JudgeStep2() {
 
