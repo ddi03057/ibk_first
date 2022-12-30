@@ -28,10 +28,11 @@ import LoanClause from './pages/4_execute/LoanClause.js';
 import LoanEnd from './pages/4_execute/LoanEnd.js';
 
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import { pdfjs } from 'react-pdf';
 
 
 function App() {
-
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   return (
     <div className="App">
       <Link onClick={() => {
