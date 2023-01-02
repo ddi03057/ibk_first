@@ -1,12 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import FirstPage from './pages/5_new/FirstPage.js';
 import ProdGuide from './pages/1_guide/ProdGuide.js'
 import CstInfoAdd from './pages/1_guide/CstInfoAdd.js';
-import PreGuide from './pages/5_new/PreGuide.js';
+import PreGuide from './pages/1_guide/PreGuide.js';
 import JudgeStep1 from './pages/2_judge/JudgeStep1.js';
 import JudgeStep2 from './pages/2_judge/JudgeStep2.js';
-import JudgeStep3 from './pages/5_new/JudgeStep3.js';
+import JudgeStep3 from './pages/2_judge/JudgeStep3.js';
 import CsInfoAgree from './pages/2_judge/CsInfoAgree.js';
 import CsInfoAgree2 from './pages/2_judge/CsInfoAgree2.js';
 import DocCollectList from './pages/2_judge/DocCollectList.js';
@@ -26,8 +25,6 @@ import StartLoan2 from './pages/4_execute/StartLoan2.js';
 import LoanContract from './pages/4_execute/LoanContract.js';
 import LoanClause from './pages/4_execute/LoanClause.js';
 import LoanEnd from './pages/4_execute/LoanEnd.js';
-import JointCertificate from './pages/5_new/JointCertificate.js';
-import JointCertificateDetail from './pages/5_new/JointCertificateDetail.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { pdfjs } from 'react-pdf';
 
@@ -39,9 +36,6 @@ function App() {
       <Link onClick={() => {
 
       }} to="/">홈</Link> ▷	▶
-      <Link onClick={() => {
-
-      }} to="/firstpage">첫화면</Link> ▷	▶
       <Link onClick={() => {
 
       }} to="/cstinfoadd">고객정보등록</Link> ▷	▶
@@ -118,12 +112,7 @@ function App() {
       <Link onClick={() => {
 
       }} to="/loanend">대출실행완료</Link> ▷ ▶
-      <Link onClick={() => {
 
-}} to="/jointcertificate">공동인증서</Link> ▷	▶
-<Link onClick={() => {
-
-}} to="/jointcertificatedetail">공동인증서상세</Link> ▷	▶
 
 
 
@@ -131,7 +120,6 @@ function App() {
 
       }} to="/"></Link>
       <Routes>
-        <Route path="/firstpage" element={<FirstPage />} />
         <Route path="/cstinfoadd" element={<CstInfoAdd />} />
         <Route path="/prodguide" element={<ProdGuide />} />
         <Route path="/preguide" element={<PreGuide />} />
@@ -157,8 +145,7 @@ function App() {
         <Route path="/loancontract" element={<LoanContract />} />
         <Route path="/loanclause" element={<LoanClause />} />
         <Route path="/loanend" element={<LoanEnd />} />
-        <Route path="/jointcertificate" element={<JointCertificate />} />
-        <Route path="/jointcertificatedetail" element={<JointCertificateDetail />} />
+        
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>
