@@ -52,7 +52,7 @@ function JudgeStep3() {
       console.log(answer)
     }
   }
-  const [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, ]);
+  const [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99,]);
 
   ///////////////////////////////////////////////////////////
   //다음화면을 위한 navigate
@@ -85,37 +85,6 @@ function JudgeStep3() {
     //tobe : axios 진단리스트
 
     navigate("/");
-  }
-
-
-  function cbFooter(idx, navigate, link) {
-
-    //밸리데이션체크
-    let validMsg = validCheck(answer);
-    if (!validMsg) {
-      //tobe : axios 진단리스트
-      validMsg = "정말 동의하시겠습니까?"
-      setPopup({
-        open: true,
-        titile: "Error",
-        message: validMsg,
-        isHeader: false,
-        confirmBtn: ["모두 동의하고 다음"],
-        callback: cbCompleteModal
-      })
-    } else {
-
-      itemRef.current[validMsg[0]].focus();
-      setPopup({
-        open: true,
-        title: "Error",
-        message: validMsg[1],
-        isHeader: false,
-        confirmBtn: ["확인"],
-        callback: cbAlertModal
-        //curRef: validMsg[0]
-      });
-    }
   }
 
 
@@ -172,14 +141,14 @@ function JudgeStep3() {
               )
             })
           }
-          <div align="left" style={{ marginTop: 20, marginBottom: 20, fontSize: 18 }}><b>신청 전 유의사항을 꼭 확인해주세요.</b></div>
+          <div align="left" style={{ marginTop: 20, marginBottom: 20, fontSize: 18, paddingLeft: 20 }}><b>신청 전 유의사항을 꼭 확인해주세요.</b></div>
           <div class="container">
             <div class="row">
               <div class="chiller_cb" style={{ width: '90%', height: 55, textAlign: 'left', marginBottom: 40 }}>
                 <input
                   id="myCheckbox1"
                   type="checkbox"
-                  
+
                 />
                 <label for="myCheckbox1" style={{ color: "gray" }}>IBK기업은행에 상담중인 대출이 없습니다.</label>
                 <span></span>
@@ -197,14 +166,12 @@ function JudgeStep3() {
             </div>
           </div>
           <ToggleButton
-            style={{ width: '100%', }}
+            style={{ width: '100%' }}
             id="toggle-check"
             type="checkbox"
             variant="outline-primary"
             checked={checkItems.length === data.length ? true : false}
             value=""
-            disabled={disabledYn}
-            callbackId={cbFooter}
             onChange={(e) => {
               handleAllCheck(e.target.checked);
               //전체 pdf loop돌리기위해, 전체동의임의로 7로보냄
@@ -218,7 +185,7 @@ function JudgeStep3() {
       </ListGroup>
       <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} confirmBtn={popup.confirmBtn} callback={popup.callback} />
 
-      <ModalPdf show={show} handleClose={handleClose} handleShow={handleShow} data={jsonItemList} idx={idxData}></ModalPdf>
+      <ModalPdf show={show} handleClose={handleClose} setCheckItems={setCheckItems} handleShow={handleShow} data={jsonItemList} handleSingleCheck={handleSingleCheck} idx={idxData} answer={answer} setAnswer={setAnswer}></ModalPdf>
     </>
   );
 }
@@ -230,7 +197,8 @@ function ModalPdf(props) {
   function cbFooter(idx, navigate, link) {
     //props.handleClose();
     console.log(idx);
-    console.log(itemRef.current[6]);
+    props.handleClose(true);
+
   }
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -265,13 +233,14 @@ function ModalPdf(props) {
         }
 
         <Modal.Footer>
-          <Footer obj={{
-            type: "button",
-            disabled: disabledYn,
-            text: ["확인"],
-            link: "",
-            callbackId: cbFooter
-          }} ></Footer>
+          <Footer
+            obj={{
+              type: "button",
+              disabled: disabledYn,
+              text: ["확인"],
+              link: "",
+              callbackId: cbFooter
+            }} ></Footer>
         </Modal.Footer>
 
       </Modal.Body>
