@@ -7,7 +7,7 @@ import data from '../../json/judgeStep3Data.js';
 import AlertModal from '../0_common/AlertModal';
 import Footer from '../0_common/Footer';
 import Header from '../0_common/Header';
-import '../../css/FirstPage.css';
+import '../../css/JudgeStep3.css';
 
 function JudgeStep3() {
 

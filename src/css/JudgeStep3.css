@@ -39,7 +39,7 @@
   border-color: white;
   background: white;
 }
-
+/* */
 .chiller_cb input:checked~span:before {
   width: 1rem;
   height: .15rem;
