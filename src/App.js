@@ -8,8 +8,8 @@ import JudgeStep1 from './pages/2_judge/JudgeStep1.js';
 import JudgeStep2 from './pages/2_judge/JudgeStep2.js';
 import JudgeStep3 from './pages/5_new/JudgeStep3.js';
 import CsInfoAgree from './pages/2_judge/CsInfoAgree.js';
-import CsInfoAgree2 from './pages/2_judge/CsInfoAgree2';
-import DocCollectList from './pages/2_judge/DocCollectList';
+import CsInfoAgree2 from './pages/2_judge/CsInfoAgree2.js';
+import DocCollectList from './pages/2_judge/DocCollectList.js';
 import JudgeResult from './pages/2_judge/JudgeResult.js';
 import JudgeDocResult from './pages/2_judge/JudgeDocResult.js';
 import ProCheck from './pages/2_judge/ProCheck.js';
@@ -26,7 +26,8 @@ import StartLoan2 from './pages/4_execute/StartLoan2.js';
 import LoanContract from './pages/4_execute/LoanContract.js';
 import LoanClause from './pages/4_execute/LoanClause.js';
 import LoanEnd from './pages/4_execute/LoanEnd.js';
-
+import JointCertificate from './pages/5_new/JointCertificate.js';
+import JointCertificateDetail from './pages/5_new/JointCertificateDetail.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 
@@ -116,7 +117,12 @@ function App() {
       <Link onClick={() => {
 
       }} to="/loanend">대출실행완료</Link> ▷ ▶
+      <Link onClick={() => {
 
+}} to="/jointcertificate">공동인증서</Link> ▷	▶
+<Link onClick={() => {
+
+}} to="/jointcertificatedetail">공동인증서상세</Link> ▷	▶
 
 
 
@@ -150,6 +156,8 @@ function App() {
         <Route path="/loancontract" element={<LoanContract />} />
         <Route path="/loanclause" element={<LoanClause />} />
         <Route path="/loanend" element={<LoanEnd />} />
+        <Route path="/jointcertificate" element={<JointCertificate />} />
+        <Route path="/jointcertificatedetail" element={<JointCertificateDetail />} />
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>
