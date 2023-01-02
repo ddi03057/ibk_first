@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Document, Page, pdfjs } from 'react-pdf';
 import { InputGroup, Table, Form, Dropdown, ToggleButton, DropdownButton, Button, Modal, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../../json/judgeStep3Data.js';
@@ -7,9 +8,8 @@ import AlertModal from '../0_common/AlertModal';
 import Footer from '../0_common/Footer';
 import Header from '../0_common/Header';
 
-
 function JudgeStep3() {
-
+  
   let jsonItemList = [];
   jsonItemList = data;
 
@@ -134,7 +134,12 @@ function JudgeStep3() {
           variant="outline-primary"
           checked={checkItems.length === data.length ? true : false}
           value=""
-          onChange={(e) => handleAllCheck(e.target.checked)}
+          onChange={(e) => {
+            handleAllCheck(e.target.checked);
+            //전체 pdf loop돌리기위해, 전체동의임의로 7로보냄
+            setIdxData(7);
+            handleShow(true);
+          }}
         >
           전체 동의
         </ToggleButton>
@@ -203,17 +208,69 @@ function JudgeStep3() {
 }
 
 function ModalPdf(props) {
+  
+  const itemRef = useRef([]);
+  const [disabledYn, setDisabledYn] = useState(true);
+  function cbFooter(idx, navigate, link) {
+    //props.handleClose();
+    console.log(idx);
+    console.log(itemRef.current[6]);
+  }
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+  const idx = props.idx;
+  let arrData = [];
+  //전체동의인지 체크
+  if(idx != 7) {
+    arrData.push(props.data[idx]);
+  }else {
+    arrData = props.data;
+  }
+  
   return (
-    <Modal show={props.show} onHide={props.handleClose} fullscreen={true}>
+    <Modal id="modalpdf" show={props.show} onHide={props.handleClose} fullscreen={true}>
       <Modal.Header closeButton>
         <Modal.Title></Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <iframe src={props.data[props.idx].pdfvalue} height="100%" width="100%" title="ModalPdfViewer" />
+      <Modal.Body className='modal-body' onScroll={(e)=>{
+        console.log(e.target.scrollTop);
+        (document.querySelector(".modal-body").scrollHeight - Math.floor(document.querySelector(".modal-body").scrollTop) === document.querySelector(".modal-body").clientHeight)&&setDisabledYn(false)
+      }}>
+      {
+        arrData.map((pdfData, pdfIdx)=>{
+          
+          return (
+            <PdfViewer pdfData={pdfData}></PdfViewer>
+          )
+        })
+      }
+        
+        <Modal.Footer>
+          <Footer obj={{
+            type: "button",
+            disabled: disabledYn,
+            text: ["확인"],
+            link: "",
+            callbackId: cbFooter
+          }} ></Footer>
+        </Modal.Footer>
+        
       </Modal.Body>
     </Modal>
   );
-}
+};
+
+const PdfViewer = memo(function (pdfData) {
+  return (
+    <Document file={{ url : pdfData.pdfData.pdfvalue, httpHeaders: { 'X-CustomHeader': '40359820958024350238508234' }, withCredentials: true}}>
+      <Page pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false}/>
+    </Document>
+  );
+});
+
 
 function validCheck(answer) {
 
