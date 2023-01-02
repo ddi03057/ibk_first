@@ -26,8 +26,6 @@ import StartLoan2 from './pages/4_execute/StartLoan2.js';
 import LoanContract from './pages/4_execute/LoanContract.js';
 import LoanClause from './pages/4_execute/LoanClause.js';
 import LoanEnd from './pages/4_execute/LoanEnd.js';
-import JointCertificate from './pages/5_new/JointCertificate.js';
-import JointCertificateDetail from './pages/5_new/JointCertificateDetail.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { pdfjs } from 'react-pdf';
 
@@ -157,8 +155,6 @@ function App() {
         <Route path="/loancontract" element={<LoanContract />} />
         <Route path="/loanclause" element={<LoanClause />} />
         <Route path="/loanend" element={<LoanEnd />} />
-        <Route path="/jointcertificate" element={<JointCertificate />} />
-        <Route path="/jointcertificatedetail" element={<JointCertificateDetail />} />
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>
