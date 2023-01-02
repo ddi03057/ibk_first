@@ -145,7 +145,6 @@ function App() {
         <Route path="/loancontract" element={<LoanContract />} />
         <Route path="/loanclause" element={<LoanClause />} />
         <Route path="/loanend" element={<LoanEnd />} />
-        
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>

@@ -42,8 +42,10 @@ function Header(props) {
     <Navbar bg="primary" variant="dark" style={{display: pageShow?'':'none'}}>
       <Container>
         <Nav> </Nav>
+        
         <Nav style={{color: 'white', align: 'center'}} className='justify-content-center'>{pageList.find((data) => data.id === props.pageId).name}</Nav>
-        <Nav> </Nav>
+        
+        <Nav style={{color: 'white', align: 'right'}}> aaa </Nav>
       </Container>
     </Navbar>
     
