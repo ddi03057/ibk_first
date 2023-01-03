@@ -1,7 +1,7 @@
 import { Col, Container, Row, ListGroup } from "react-bootstrap";
 import { ButtonGroup, ToggleButton, Table, Button, Form } from 'react-bootstrap';
 
-function FirstPage() {
+function ProdGuide() {
 
   return (
     <>
@@ -219,4 +219,4 @@ function FirstPage() {
     </>
   )
 }
-export default FirstPage;
+export default ProdGuide;
