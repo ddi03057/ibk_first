@@ -1,7 +1,12 @@
 import { Col, Container, Row, ListGroup } from "react-bootstrap";
 import { ButtonGroup, ToggleButton, Table, Button, Form } from 'react-bootstrap';
+import Footer from "../0_common/Footer";
 
 function ProdGuide() {
+
+  function cbFooter(idx, navigate, link) {
+
+  }
 
   return (
     <>
@@ -213,7 +218,14 @@ function ProdGuide() {
             미확정----------------------------------------------
           </b>
         </ListGroup.Item>
-      <Button>진행</Button>
+      <Footer obj={{
+          type: "button",
+          disabled: false,
+          text: ["진행"],
+          link: "",
+          callbackId: cbFooter
+        }} >
+      </Footer>
 
       </ListGroup>
     </>
