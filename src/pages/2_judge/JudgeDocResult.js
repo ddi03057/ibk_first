@@ -1,16 +1,14 @@
-import JudgeDocResultCss from '../../css/JudgeDocResult.css';
-import Table from 'react-bootstrap/Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Header from '../0_common/Header';
 import { useEffect, useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
+import { InputGroup, ListGroup, Container, Form, Dropdown, DropdownButton, Button, Modal, Accordion, Row, Col, ToggleButton, ButtonGroup } from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../0_common/Header';
 import data from '../../json/judgeDocResultData.js';
 
 
 
 function JudgeDocResult() {
+
     const reload = () => {
         window.location.reload("/judgedocresult");
     }
@@ -18,42 +16,87 @@ function JudgeDocResult() {
     jsonDetail = data;
     return (
         <>
-            <Header pageId={4} stepCd={4} />
-            <Table className='judgedocument'>
-                <tr align='left'>
-                    <h4 className='today'><b>사전심사 서류 수집 현황</b></h4><br/>
-                    <td><Button className='refresh' variant="outline-primary" onClick={reload}>새로고침</Button></td>
-                </tr>
-                <div className='ResultCheck'>
-                    <h5 style={{ backgroundColor: 'LightCyan'}}>사전심사서류 수집 여부를 확인합니다.</h5>
-                </div>   
-                
-                <br/>
-                <tbody align='left'>
-                {
-            jsonDetail.map(function (data, idx) {
-                return(
-                    <tr>
-                        <td>{data.name}</td>
-                        {/* 밸류값 받아서 분류해줘야함 */}
-                        <td>{data.valuechecklist.value}</td>
-                    </tr>
-                    )})}
-                </tbody>
-                
+            <ListGroup style={{ borderStyle: 'solid', marginTop: 20, width: '100%' }}>
+                <ListGroup.Item >
+                    <h5 align='left'><b>아직 전송되지 않은 서류가 있습니다. 서류 수집내역을 확인해 주세요.</b></h5>
+                    <div align='left' style={{ color: "#C0C0C0" }}>
+                        <b>전체 서류가 전송 완료인 경우에만 다음 화면 진행이 가능합니다.</b>
+                    </div>
+                    <br />
+                    <div >
+                        <Button style={{ borderRadius: 50, width: 200 }} variant='outline-primary'>모두 재전송</Button>
+                    </div>
+                </ListGroup.Item>
+                <br />
+                <ListGroup align='left' variant='flush'>
+                    {jsonDetail.map(function (data, idx) {
+                        return (
+                            <ListGroup.Item>
+                                <div style={{ float: 'left' }}><b>{data.name}</b></div>
+                                <ItemForm
+                                    data={data} />
+                            </ListGroup.Item>
+                        )
+                    })}
+                </ListGroup>
+                <br />
+                <div align='left' style={{ color: "gray", paddingLeft: 20 }}>
+                    주민등록상 행적구역을 선택해주세요.
+                </div>
+                <br />
+                <div align='left' style={{ paddingLeft: 20 }}>
+                    시도
+                    <br />
+                    <br />
+                    <div >
+                        <DropdownButton
+                            variant='outline-secondary'
+                            title="선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                            id="input-group-dropdown-1">
+                                    <Dropdown.Item></Dropdown.Item>
+                        </DropdownButton>
+                    </div>
+                </div>
+                <br />
+                <div align='left' style={{ paddingLeft: 20 }}>
+                    시군구
+                    <br />
+                    <br />
+                    <div >
 
-            </Table>
-            <div className='question'>
-            <tr>
-            <ul>
-            <li>부적합 판단을 받으신 고객은 당일자에는 대면 및 비대면 대출 신청이 불가 합니다. 다만, 익영업일 부터 다시 적합성, 적정성 판단거래 수행이 가능합니다.</li>
-            <li>자세한 문의사항은 거래하실 영업점 또는 고객센터(1566-2566)으로 문의 주시기 바랍니다.</li>
-            </ul>
-            </tr>
-            </div>
-            <br/>
+                        <DropdownButton
+                            variant='outline-secondary'
+                            title="선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                            id="input-group-dropdown-1">
+                            <Dropdown.Item></Dropdown.Item>
+                        </DropdownButton>
+                    </div>
+                </div>
+
+            </ListGroup>
+
+
         </>
     )
+}
+function ItemForm(props) {
+    if (props.data.value === "재전송 요청") {
+
+        return (
+            <Button style={{ float: 'right', borderRadius: 20 }} variant="outline-danger">
+                {props.data.value}
+            </Button>
+        )
+    } else if ("전송완료") {
+        return (
+            <>
+                <div align="right">
+                    <img style={{ width: "10%" }} src="/gImg/checkresult.png" />
+                    <b>{props.data.value}</b>
+                </div>
+            </>
+        )
+    }
 }
 
 export default JudgeDocResult;
