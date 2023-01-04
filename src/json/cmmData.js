@@ -80,6 +80,18 @@ const crdBruList = [
         title : "KCB"
     }
 ];
+const loanTermList = [
+    {
+        id : 1,
+        name : "5"
+
+    },
+    {
+        id : 2,
+        name : "8"
+
+    },
+]
 
 const emailList = [
     {
@@ -197,6 +209,7 @@ let validlist2 = [];
 */
 function cmmData(props) {
     switch(props) {
+        case 'loanTerm'     : return loanTermList;
         case 'crdBru'       : return crdBruList;
         case 'email'        : return emailList;
         case 'judgeStepNm'  : return arrJudgeStepNm;

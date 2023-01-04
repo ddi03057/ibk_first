@@ -1,7 +1,7 @@
 let data = [
     {
         id : 0,
-        title : "전문금융 소비자 여부",
+        title : "전문금융 소비자여부",
         standardVal : "",
         type : "select",
         radioList : [

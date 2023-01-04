@@ -42,13 +42,15 @@ function JudgeStep1Data() {
   function cbCompleteModal(props) {
     //tobe : axios 진단리스트
     //axios콜백에서 적합/부적합결과 받아서 적합성적정성결과화면 이동
+    
     navigate(
       "/judgeresult"
       , {
         state: {
           result: true
           , value: answer
-        }
+        },
+        
       });
   }
   function cbFooter(idx, navigate, link) {

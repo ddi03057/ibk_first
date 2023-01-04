@@ -25,6 +25,7 @@ import StartLoan2 from './pages/4_execute/StartLoan2.js';
 import LoanContract from './pages/4_execute/LoanContract.js';
 import LoanClause from './pages/4_execute/LoanClause.js';
 import LoanEnd from './pages/4_execute/LoanEnd.js';
+import SelfCheckSurvey from './pages/2_judge/SelfCheckSurvey.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { pdfjs } from 'react-pdf';
 
@@ -58,6 +59,9 @@ function App() {
       <Link onClick={() => {
 
       }} to="/judgeresult">적합성.적정성판단결과</Link> ▷ ▶
+      <Link onClick={() => {
+
+}} to="/selfchecksurvey">조사자료 자가체크</Link> ▷ ▶
       <Link onClick={() => {
 
       }} to="/csinfoagree">고객정보 위임 동의</Link> ▷ ▶
@@ -125,6 +129,7 @@ function App() {
         <Route path="/preguide" element={<PreGuide />} />
         <Route path="/judgestep1" element={<JudgeStep1 />} />
         <Route path="/judgestep2" element={<JudgeStep2 />} />
+        <Route path="/selfchecksurvey" element={<SelfCheckSurvey />} />
         <Route path="/judgestep3" element={<JudgeStep3 />} />
         <Route path="/csinfoagree" element={<CsInfoAgree />} />
         <Route path="/csinfoagree2" element={<CsInfoAgree2 />} />
