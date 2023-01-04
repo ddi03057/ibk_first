@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { InputGroup, ListGroup, Container, Form, Dropdown, DropdownButton, Button, Modal, Accordion, Row, Col, ToggleButton, ButtonGroup } from 'react-bootstrap';
 import data from "../../json/SelfCheckSurveyData.js";
 import AlertModal from '../0_common/AlertModal';
 import '../../css/SelfCheckSurvey.css';
 import cmmData from '../../json/cmmData.js';
+import Footer from '../0_common/Footer';
+import { func } from 'prop-types';
 
 
 function SelfCheckSurvey() {
@@ -19,22 +22,67 @@ function SelfCheckSurvey() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  let [disabledYn, setDisabledYn] = useState(true);
 
+  let navigate = useNavigate();
+  useEffect(() => {
+    console.log(answer);
+
+    if (answer.indexOf(99) === -1) {
+      setDisabledYn(false);
+    }
+  }, [answer]);
+
+
+  function cbAlertModal(props) {
+    if (props === 0) { //아니오
+
+    } else { //예
+
+    }
+  }
+  function cbCompleteModal(props) {
+    //tobe : axios 진단리스트
+    //axios콜백에서 적합/부적합결과 받아서 적합성적정성결과화면 이동
+    
+    
+      
+  }
+
+  function cbFooter(idx, navigate, link) {
+
+    //빈값 밸리데이션
+    let emptyMsg = validCheckEmpty(answer);
+    console.log(emptyMsg)
+
+    if (!emptyMsg) {
+      setDisabledYn(false);
+      emptyMsg = "신청하신 내용이 맞습니까?";
+      setPopup({
+        open: true,
+        title: "Error",
+        message: emptyMsg,
+        isHeader: false,
+        confirmBtn: ["확인"],
+        callback: cbCompleteModal
+      });
+    }
+  }
 
   return (
     <>
       <h5><b>조사자료 자가체크</b></h5>
       <ListGroup>
-        <ListGroup.Item>
+        <ListGroup.Item >
           {jsondata.map(function (data, idx) {
             return (
               <div key={`tr${idx}`}>
-                  <div align='left'>
-                    <b>{data.title}</b>
-                  </div>
-                  <ButtonGroup key={idx} align='left' style={{ marginTop: 20, marginBottom: 20 }}>
-                    <ItemForm  data={data} index = {idx}answer={answer} setAnswer={setAnswer} />
-                  </ButtonGroup>
+                <div align='left'>
+                  <b>{data.title}</b>
+                </div>
+                <ButtonGroup key={idx} align='left' style={{ marginTop: 20, marginBottom: 20 ,width:'100%'}}>
+                  <ItemForm data={data} index={idx} answer={answer} setAnswer={setAnswer} popup={popup} setPopup={setPopup} setDisabledYn={setDisabledYn} />
+                </ButtonGroup>
                 <br />
               </div>
             )
@@ -57,11 +105,22 @@ function SelfCheckSurvey() {
             </label>
 
           </div>
+          
           <div>
             <a className='arrowBtn' onClick={() => { handleShow() }}></a>
           </div>
         </ListGroup.Item>
+        <Footer style={{marginTop:20}}
+                obj={{
+                  type: "button",
+                  disabled: disabledYn,
+                  text: ["다음"],
+                  link: "",
+                  callbackId: cbFooter
+                }} ></Footer>
       </ListGroup>
+      <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} confirmBtn={popup.confirmBtn} callback={popup.callback} />
+
       <NotiModal show={show} handleClose={handleClose} handleShow={handleShow}></NotiModal>
     </>
   )
@@ -71,130 +130,367 @@ function SelfCheckSurvey() {
 function ItemForm(props) {
   const [checked, setChecked] = useState(false);
   const [checkListValue, setCheckListValue] = useState(true);
-  
+
   let [loanTerm, setLoanTerm] = useState("대출기한 선택")
+
+  let navigate = useNavigate();
+  /**
+   * 라디오버튼 클릭이벤트시 항목별 처리
+   * @param {*} props 
+   * @param {*} idx1 
+   */
+
+  function clickRadioBtn(props, idx1) {
+
+    //주사업장 소유자 콜백
+    const cbRadio0 = (is) => {
+      if (is != 0) {
+        console.log("1231")
+        props.setDisabledYn(true);
+      } else {
+        document.querySelector("#radio10").checked = false;
+        let copy = [...props.answer];
+        copy[props.index] = 99;
+        props.setAnswer(copy);
+      }
+    }
+    //주민등록상 주소지 소유자 콜백
+    const cbRadio1 = (is) => {
+      if (is != 0) {
+      } else {
+        document.querySelector("#radio10").checked = false;
+        let copy = [...props.answer];
+        copy[props.index] = 99;
+        props.setAnswer(copy);
+      }
+    }
+    //거주주택 소유자 콜백
+    const cbRadio2 = (is) => {
+      if (is != 0) {
+      } else {
+        document.querySelector("#radio10").checked = false;
+        let copy = [...props.answer];
+        copy[props.index] = 99;
+        props.setAnswer(copy);
+      }
+    }
+    switch (props.index) {
+
+      case 0:
+        if (props.data.checklist[idx1].id === 1) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio0
+          });
+        } else if (props.data.checklist[idx1].id === 2) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio0
+          });
+        }
+        break;
+      case 3:
+        if (props.data.checklist[idx1].id === 1) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio1
+          });
+        } else if (props.data.checklist[idx1].id === 2) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio1
+          });
+        }
+        break;
+      case 4:
+        if (props.data.checklist[idx1].id === 1) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio1
+          });
+        } else if (props.data.checklist[idx1].id === 2) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio1
+          });
+        }
+        break;
+    }//진단리스트저장
+    let copy = [...props.answer];
+    copy[props.index] = {
+      id: props.data.checklist[idx1].id,
+      value: props.data.checklist[idx1].value
+    };
+    props.setAnswer(copy);
+    
+
+  }
+
+  //있음 없음 버튼 함수
+  function clickRadioBtn1(props, idx2) {
+    //주사업장 권리침해(최근 1년이내) 콜백
+    const cbRadio0 = (is) => {
+      if (is != 0) {
+      } else {
+        document.querySelector("#radio01").checked = false;
+        let copy = [...props.answer];
+        copy[props.index] = 99;
+        props.setAnswer(copy);
+      }
+    }
+    const cbRadio1 = (is) => {
+      if (is != 0) {
+      } else {
+        document.querySelector("#radio06").checked = false;
+        let copy = [...props.answer];
+        copy[props.index] = 99;
+        props.setAnswer(copy);
+      }
+    }
+
+    switch (props.index) {
+
+      case 1:
+        if (props.data.checklist[idx2].id === 0) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio0
+          });
+        }
+        break;
+      case 6:
+        if (props.data.checklist[idx2].id === 0) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio1
+          });
+        }
+        break;
+    }
+    //진단리스트저장
+    let copy = [...props.answer];
+    copy[props.index] = {
+      id: props.data.checklist[idx2].id,
+      value: props.data.checklist[idx2].value
+    };
+    props.setAnswer(copy);
+    console.log(props.answer)
+
+  }
+
+  //예 아니요 버튼 함수
+  function clickRadioBtn2(props, idx3) {
+    //본인또는 배우자 명의 소유 주택 콜백
+    const cbRadio0 = (is) => {
+      if (is != 0) {
+      } else {
+        document.querySelector("#radio01").checked = false;
+        let copy = [...props.answer];
+        copy[props.index] = 99;
+        props.setAnswer(copy);
+      }
+    }
+
+    switch (props.index) {
+
+      case 5:
+        if (props.data.checklist[idx3].id === 1) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: data[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio0
+          });
+        }
+        break;
+    }
+    //진단리스트저장
+    let copy = [...props.answer];
+    copy[props.index] = {
+      id: props.data.checklist[idx3].id,
+      value: props.data.checklist[idx3].value
+    };
+    props.setAnswer(copy);
+    console.log(props.answer)
+
+  }
 
   if (props.data.type === "select") {
     return (
       <div key="default-button" className="mb-3">
 
-        {props.data.checklist.map(function(data1, idx1) {
+        {props.data.checklist.map(function (data1, idx1) {
           return (
             <ToggleButton variant='outline-secondary'
-            key={`${idx1}${props.index}`}
-            id={`radio${idx1}-${props.index}`}
-            type="radio"
-            name={`${idx1}${props.index}`}
-            value={data1.value}
-            checked={props.answer[props.index] === data1.value}
-            onChange={(e)=>{
-              let copy = [...props.answer];
-              copy[props.index] = e.currentTarget.value;
-              props.setAnswer(copy)
-              console.log(props.answer)
-            }}
+              key={`${idx1}${props.index}`}
+              id={`radio${idx1}${props.index}`}
+              type="radio"
+              value={data1.value}
+              checked={props.answer[props.index].value === data1.value}
+              onClick={(e) => {
+                if (true) {
+                  clickRadioBtn(props, idx1);
+                }
+              }}
               style={{ width: 100, height: 50, marginRight: 5 }}
             >{data1.value}
             </ToggleButton>
           )
         })}
       </div>
-    )}else if(props.data.type === "select2"){
-      return(
-        <div style={{paddingLeft:30}}>
-        {props.data.checklist.map(function(data2,idx2){
-          return(
+    )
+  } else if (props.data.type === "select2") {
+    return (
+      <div style={{ paddingLeft: 30 }}>
+        {props.data.checklist.map(function (data2, idx2) {
+          return (
             <ToggleButton variant='outline-secondary'
-            key={`${idx2}${props.index}`}
-            id={`radio${idx2}-${props.index}`}
-            type="radio"
-            name={`${idx2}${props.index}`}
-            value={data2.value}
-            checked={props.answer[props.index] === data2.value}
-            onChange={(e)=>{
-              let copy = [...props.answer];
-              copy[props.index] = e.currentTarget.value;
-              props.setAnswer(copy)
-              console.log(props.answer)
-            }}
+              key={`${idx2}${props.index}`}
+              id={`radio${idx2}${props.index}`}
+              type="radio"
+              value={data2.value}
+              checked={props.answer[props.index].value === data2.value}
+              onClick={(e) => {
+                if (true) {
+                  console.log(idx2)
+                  clickRadioBtn1(props, idx2)
+                }
+              }}
               style={{ width: 130, height: 50, marginRight: 5 }}
             >{data2.value}
             </ToggleButton>
           )
         })}
-        </div>
-      )
-    }else if(props.data.type === "select3"){
-      return(
-        <div style={{paddingLeft:30}}>
-          {props.data.checklist.map(function(data3,idx3){
-            return(
-              <ToggleButton variant='outline-secondary'
-            key={`${idx3}${props.index}`}
-            id={`radio${idx3}-${props.index}`}
-            type="radio"
-            name={`${idx3}${props.index}`}
-            value={data3.value}
-            checked={props.answer[props.index] === data3.value}
-            onChange={(e)=>{
-              let copy = [...props.answer];
-              copy[props.index] = e.currentTarget.value;
-              props.setAnswer(copy)
-              console.log(props.answer)
-            }}
+      </div>
+    )
+  } else if (props.data.type === "select3") {
+    return (
+      <div style={{ paddingLeft: 30 }}>
+        {props.data.checklist.map(function (data3, idx3) {
+          return (
+            <ToggleButton variant='outline-secondary'
+              key={`${idx3}${props.index}`}
+              id={`radio${idx3}${props.index}`}
+              type="radio"
+              name={`${idx3}${props.index}`}
+              value={data3.value}
+              checked={props.answer[props.index].value === data3.value}
+              onClick={(e) => {
+                if (true) {
+                  clickRadioBtn2(props, idx3)
+                }
+              }}
               style={{ width: 130, height: 50, marginRight: 5 }}
             >{data3.value}
             </ToggleButton>
-            )
-          })}
-        </div>
-      )
-    }else if(props.data.id === 7){
-      return(
-        <div>
-            <InputGroup size="lg" className="mb-3" >
-            <Form.Control
-              aria-label="Small"
-              aria-describedby="inputGroup-sizing-lg"
-              type='number'
-              onChange={(e) => {
-                let copy = [...props.answer];
-                copy[props.index] = e.target.value;
-                props.setAnswer(copy);
-              }}
-            />
-          </InputGroup>
-          </div>
-      )
-    }else if(props.data.id === 8){
-      return(
-        <DropdownButton
+          )
+        })}
+      </div>
+    )
+  } else if (props.data.id === 7) {
+    return (
+        <InputGroup  className="mb-3" bsPrefix='input-group'>
+          <Form.Control
+            type='number'
+            min = "1000000"
+            max = "100000000"
+            defaultValue="1000000"
+            onChange={(e) => {
+              if (e.target.value > "100000000") {
+                props.setPopup({
+                  open: true,
+                  title: "Error",
+                  message: data[props.index].msg,
+                  isHeader: false,
+                  confirmBtn: ["아니오", "예"],
+                });
+              }else if (e.target.value.length < 8) {
+                props.setPopup({
+                  open: true,
+                  title: "Error",
+                  message: data[props.index].msg1,
+                  isHeader: false,
+                  confirmBtn: ["아니오", "예"],
+                });
+              } else if (e.target.value.length < 7) {
+                props.setPopup({
+                  open: true,
+                  title: "Error",
+                  message: data[props.index].msg1,
+                  isHeader: false,
+                  confirmBtn: ["아니오", "예"],
+                });
+              }
+              let copy = [...props.answer];
+              copy[props.index] = e.target.value;
+              props.setAnswer(copy);
+            }}
+          />
+        </InputGroup>
+    )
+  } else if (props.data.id === 8) {
+    return (
+      <DropdownButton
         variant='outline-secondary'
         title={loanTerm}
         id="input-group-dropdown-1"
-        >
+      >
         {
-          cmmData("loanTerm").map(function(data,idx){
-            return(
+          cmmData("loanTerm").map(function (data, idx) {
+            return (
               <Dropdown.Item
-              key={idx}
-              onClick={(e)=>{
-                setLoanTerm(data.name);
-                let copy = [...props.answer];
-                copy[props.index] = data.name
-                props.setAnswer(copy)
-                console.log(props.answer)
-              }}
+                key={idx}
+                onClick={(e) => {
+                  setLoanTerm(data.name);
+                  let copy = [...props.answer];
+                  copy[props.index] = data.name
+                  props.setAnswer(copy)
+                  console.log(props.answer)
+                }}
               >{data.name}</Dropdown.Item>
             )
           })
-          
-          
+
+
         }
-        </DropdownButton>
-      )
-    }
+      </DropdownButton>
+    )
   }
+}
 function NotiModal(props) {
 
   return (
@@ -259,5 +555,28 @@ function NotiModal(props) {
     </Modal>
   )
 }
+/**
+ * 항목별 빈값 체크
+ * @param {*} answer 
+ * @returns 
+ */
+function validCheckEmpty(answer) {
+  let title = "";
+  let index = 0;
+  let verb = "하시기 바랍니다.";
+  let msg = "전부 체크해주시기 바랍니다.";
+
+  // answer.forEach((data, idx) => {
+  for (let idx = 0; idx < answer.length; idx++) {
+    if (!answer[idx] || answer[idx] === 99) {
+      console.log(answer[idx])
+      return msg;
+    }else{
+      return "";
+    }
+  }
+}
+
+
 
 export default SelfCheckSurvey

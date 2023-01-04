@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from './common/store.js';
+import { Provider } from 'jotai';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
