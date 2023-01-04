@@ -1,4 +1,4 @@
-//뎁스별 경로 정의
+//경로정의
 const PathConstants = {
   //진행상태조회
   //안내
@@ -43,28 +43,26 @@ const PathConstants = {
   POSTMANAGEMENT: '/postmanagement', //사후관리
 
   //depth2
-  GUIDE_DETAIL: '/guide/detail',
-  GUIDE_READY: '/guide/ready',
+  GUIDE_DETAIL: '/guide/detail',  //상품안내
+  GUIDE_READY: '/guide/ready',  //대출신청 전 사전준비안내
 
-  PREJUDGE_CUSTAGREE: '/prejudge/custagree',
-  PREJUDGE_SUITTEST: '/prejudge/suittest',
-  PREJUDGE_SUITRESULT: '/prejudge/suitresult',
-  PREJUDGE_SELFCHECK: '/prejudge/selfcheck',
-  PREJUDGE_GRTINFOINPUT: '/prejudge/grtinfoinput',
-  PREJUDGE_DOCSTATUS: '/prejudge/docstatus',
+  PREJUDGE_CUSTAGREE: '/prejudge/custagree',  //고객동의
+  PREJUDGE_SUITTEST: '/prejudge/suittest',  //적합성적정성검사
+  PREJUDGE_SUITRESULT: '/prejudge/suitresult',  //적합성적정성결과
+  PREJUDGE_SELFCHECK: '/prejudge/selfcheck',  //자가진단
+  PREJUDGE_GRTINFOINPUT: '/prejudge/grtinfoinput',  //사전심사자료작성
+  PREJUDGE_DOCSTATUS: '/prejudge/docstatus',  //서류제출상태
   
-  GRTJUDGE_APPRINFO: '/grtjudge/apprinfo',
-  GRTJUDGE_ACCOPEN: '/grtjudge/accopen',
+  GRTJUDGE_APPRINFO: '/grtjudge/apprinfo',  //보증승인내역 확인
+  GRTJUDGE_ACCOPEN: '/grtjudge/accopen',  //개좌개설
 
-  LONEXECUTE_APPLYINFOINPUT: '/lonexecute/applyinfoinput',
-  LONEXECUTE_AGRMINPUT: '/lonexecute/agrminput',
-  LONEXECUTE_UNTACTAGRM: '/lonexecute/untactagrm',
-  LONEXECUTE_SUCCRESULT: '/lonexecute/succresult',
-  LONEXECUTE_FAILRESULT: '/lonexecute/failresult',
+  LONEXECUTE_APPLYINFOINPUT: '/lonexecute/applyinfoinput',  //대출신청서작성 및 실행요청
+  LONEXECUTE_AGRMINPUT: '/lonexecute/agrminput',  //여신거래약정서 작성
+  LONEXECUTE_UNTACTAGRM: '/lonexecute/untactagrm',  //비대면 약정
+  LONEXECUTE_SUCCRESULT: '/lonexecute/result',  //대출실행결과
 
-  POSTMANAGEMENT_REPAY: '/postmanagement/repay',
-  POSTMANAGEMENT_REVOKREPAY: '/postmanagement/revokrepay'
-
+  POSTMANAGEMENT_REPAY: '/postmanagement/repay',  //대출상환
+  POSTMANAGEMENT_REVOKREPAY: '/postmanagement/revokrepay' //계약철회 후 상환
 
 }
 
