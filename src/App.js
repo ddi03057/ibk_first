@@ -17,11 +17,11 @@ function App() {
       }} to="/cstinfoadd">고객정보등록</Link> ▷	▶
       <Link onClick={() => {
 
-      }} to="/prodguide">상품안내</Link> ▷	▶
+      }} to={PathConstants.GUIDE_DETAIL}>상품안내</Link> ▷	▶
 
       <Link onClick={() => {
 
-      }} to="/preguide">사전안내</Link> ▷	▶
+      }} to={PathConstants.GUIDE_READY}>사전안내</Link> ▷	▶
       <Link onClick={() => {
 
       }} to={PathConstants.PREJUDGE_SUITTEST}>심사준비 1단계</Link> ▷	▶
@@ -48,7 +48,7 @@ function App() {
       }} to="/doccollectlist">서류수집내역</Link> ▷ ▶
       <Link onClick={() => {
 
-      }} to="/judgedocresult">사전심사 서류 수집현황</Link> ▷ ▶
+      }} to={PathConstants.PREJUDGE_DOCSTATUS}>사전심사 서류 수집현황</Link> ▷ ▶
       <Link onClick={() => {
 
       }} to="/procheck">대출 진행상태 조회</Link> ▷ ▶
