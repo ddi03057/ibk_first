@@ -1,3 +1,4 @@
+import Progress from './pages/0_common/Progress.js';
 import ProdGuide from './pages/1_guide/ProdGuide.js'
 import PreGuide from './pages/1_guide/PreGuide.js';
 import JudgeStep1 from './pages/2_judge/JudgeStep1.js';
@@ -22,14 +23,16 @@ import LoanEnd from './pages/4_execute/LoanEnd.js';
 import PathConstants from './modules/constants/PathConstants.js';
 import { Route, Routes } from "react-router";
 
+
 //라우터 목록 정의
 function Routing() {
   // const EsgRouting = (path) => {
   //   return location.href = `//${window.location.host}/esgLogin.html${path.location.search}&apiurl=${process.env.REACT_APP_API_URL}`;
   // }
+  
   return (
     <Routes>
-      <Route path={PathConstants.PROGRESS} element={<ProCheck/>} />
+      <Route path={PathConstants.PROGRESS} element={<Progress prams={null}/>} />
       <Route path={PathConstants.GUIDE_DETAIL} element={<ProdGuide />} />
       <Route path={PathConstants.GUIDE_READY} element={<PreGuide />} />
       <Route path={PathConstants.PREJUDGE_CUSTAGREE} element={<JudgeStep3 />} />
