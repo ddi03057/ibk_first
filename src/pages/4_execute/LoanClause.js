@@ -14,8 +14,8 @@ function LoanClause() {
     console.log("asdfsadf")
     const jsondata = data;
 
-    return (
-        <>
+  return (
+    <>
             <Header pageId={6} stepCd={4} />
             <Table>
                 <div align='left'>
@@ -43,7 +43,7 @@ function LoanClause() {
                 </tbody>
 
             </Table>
-        </>
-    )
+    </>
+            )
 }
 export default LoanClause;
